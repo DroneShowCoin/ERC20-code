@@ -136,6 +136,7 @@ contract DroneShowCoinPresaleContract is Ownable {
         BoughtTokens(msg.sender, tokens);
         
         raisedAmount = raisedAmount.add(msg.value);
+        bonusesGiven = bonusesGiven.add(bonusAmount);
         token.transfer(msg.sender, tokens);
         
         owner.transfer(msg.value);

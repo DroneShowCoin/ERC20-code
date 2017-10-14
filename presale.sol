@@ -83,7 +83,7 @@ contract DroneShowCoinPresaleContract is Ownable {
     
     Token token;
     
-    uint256 public constant RATE = 1000; //tokens per ether
+    uint256 public constant RATE = 650; //tokens per ether
     uint256 public constant CAP = 15000; //cap in ether
     uint256 public constant START = 1508760000; //GMT: Monday, October 23, 2017 12:00:00 PM
     uint256 public constant DAYS = 7; //

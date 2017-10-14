@@ -159,7 +159,7 @@ contract DroneShowCoin is StandardToken {
   string public constant symbol = "DSC";
   uint256 public constant decimals = 18;
 
-  uint256 public constant INITIAL_SUPPLY = 15000000 * 10**18;
+  uint256 public constant INITIAL_SUPPLY = 10000000 * 10**18;
 
   /**
    * @dev Contructor that gives msg.sender all of existing tokens.

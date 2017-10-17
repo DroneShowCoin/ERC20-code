@@ -161,14 +161,14 @@ contract DroneShowCoinPresaleContract is Ownable {
             //third day 20% bonus
             bonusPrcnt = 20;
         } else if (dayspassed == 3) {
-            //fourth day 18%
-            bonusPrcnt = 18;
-        } else if (dayspassed == 4) {
-            //fifth day 15%
+            //fourth day 15%
             bonusPrcnt = 15;
-        } else if (dayspassed == 5) {
-            //sixth day 10%
+        } else if (dayspassed == 4) {
+            //fifth day 10%
             bonusPrcnt = 10;
+        } else if (dayspassed == 5) {
+            //sixth day 5%
+            bonusPrcnt = 5;
         } else {
             //no bonus
             bonusPrcnt = 0;

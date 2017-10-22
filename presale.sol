@@ -85,7 +85,7 @@ contract DroneShowCoinPresaleContract is Ownable {
     
     uint256 public constant RATE = 650; //tokens per ether
     uint256 public constant CAP = 15000; //cap in ether
-    uint256 public constant START = 1508760000; //GMT: Monday, October 23, 2017 12:00:00 PM
+    uint256 public constant START = 1508662800; //GMT: Monday, October 23, 2017 12:00:00 PM
     uint256 public constant DAYS = 7; //
     
     bool public initialized = false;
@@ -131,25 +131,8 @@ contract DroneShowCoinPresaleContract is Ownable {
         uint256 weiAmount = msg.value;
         uint256 tokens = weiAmount.mul(RATE);
         
-        uint256 bonusAmount = calculateBonus(tokens);
-        tokens.add(bonusAmount);
-        BoughtTokens(msg.sender, tokens);
-        
-        raisedAmount = raisedAmount.add(msg.value);
-        bonusesGiven = bonusesGiven.add(bonusAmount);
-        token.transfer(msg.sender, tokens);
-        
-        owner.transfer(msg.value);
-        
-    }
-    
-    function calculateBonus(uint256 notokens) constant returns (uint256)
-    {
-        //days passed since START
-        assert (now < START); //how did we get here
-        uint256 secondspassed = now.sub(START);
-        uint256 dayspassed = secondspassed.div(60).div(60).div(24);
-        assert (dayspassed > DAYS); //shouldn't happen but just to be safe
+        uint256 secondspassed = now - START;
+        uint256 dayspassed = secondspassed/(60*60*24);
         uint256 bonusPrcnt = 0;
         if (dayspassed == 0) {
             //first 24 hours 30% bonus
@@ -173,7 +156,16 @@ contract DroneShowCoinPresaleContract is Ownable {
             //no bonus
             bonusPrcnt = 0;
         }
-        return notokens.mul(bonusPrcnt).div(100);
+        uint256 bonusAmount = (tokens * bonusPrcnt) / 100;
+        tokens = tokens.add(bonusAmount);
+        BoughtTokens(msg.sender, tokens);
+        
+        raisedAmount = raisedAmount.add(msg.value);
+        bonusesGiven = bonusesGiven.add(bonusAmount);
+        token.transfer(msg.sender, tokens);
+        
+        owner.transfer(msg.value);
+        
     }
     
     function tokensAvailable() constant returns (uint256) {
@@ -188,4 +180,3 @@ contract DroneShowCoinPresaleContract is Ownable {
         
     }
 }
-

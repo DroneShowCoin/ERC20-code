@@ -100,7 +100,7 @@ contract DroneShowCoinICOContract is Ownable {
         _;
     }
     
-    function DroneShowCoinPresaleContract(address _tokenAddr) public {
+    function DroneShowCoinICOContract(address _tokenAddr) public {
         require(_tokenAddr != 0);
         token = Token(_tokenAddr);
     }
